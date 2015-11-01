@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
 
+  before_action :set_article , only: [:show, :delete, :edit, :update]
+
   # GET - LIST ARTICLES
   ####################################################################
   def index
@@ -29,15 +31,12 @@ class ArticlesController < ApplicationController
   # GET - SHOW ARTICLE
   ####################################################################
   def show
-    @article = Article.find(params[:id])
     #render plain: @article.inspect
   end
 
   # DELETE - DELETE ARTICLE
   ####################################################################
   def delete
-    @article = Article.find(params[:id])
-
     if @article.nil?
       render :status => 404
     end
@@ -55,14 +54,11 @@ class ArticlesController < ApplicationController
   # GET - EDIT ARTICLE
   ####################################################################
   def edit
-    @article = Article.find(params[:id])
   end
 
   # POST - EDIT ARTICLE
   ####################################################################
   def update
-    # Grab existing article
-    @article = Article.find(params[:id])
     if @article.update(article_params)      # Update article with params passed in
       flash[:notice] = 'Article was successfully edited'
       redirect_to article_path(@article)
@@ -72,8 +68,12 @@ class ArticlesController < ApplicationController
   end
 
   private
-  def article_params
-    params.require(:article).permit(:title, :description)
-  end
+    def set_article
+      @article = Article.find(params[:id])
+    end
+
+    def article_params
+      params.require(:article).permit(:title, :description)
+    end
 
 end
