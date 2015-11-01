@@ -1,0 +1,31 @@
+<h1>All articles</h1>
+
+<p>
+    <%= link_to 'Create New', new_article_path %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Description</td>
+      <td>Created at</td>
+      <td>Updated at</td>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @articles.each do |article| %>
+      <tr>
+          <td><%= article.title %></td>
+          <td><%= article.description %></td>
+          <td><%= article.created_at %></td>
+          <td><%= article.updated_at %></td>
+          <td><%= link_to 'Display', article_path(article) %></td>
+          <td><%= link_to 'Edit', edit_article_path(article) %></td>
+          <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Really delete article #{article.title}"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

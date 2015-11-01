@@ -1,6 +1,10 @@
 class ArticlesController < ApplicationController
 
-
+  # GET - LIST ARTICLES
+  ####################################################################
+  def index
+    @articles = Article.all
+  end
 
 
   # GET - NEW ARTICLE
@@ -27,6 +31,25 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     #render plain: @article.inspect
+  end
+
+  # DELETE - DELETE ARTICLE
+  ####################################################################
+  def delete
+    @article = Article.find(params[:id])
+
+    if @article.nil?
+      render :status => 404
+    end
+
+    if @article.destroy
+      flash[:notice] = 'Article successfully deleted'
+      redirect_to articles_path
+    else
+      flash[:notice] = 'Problem deleting article'
+      render :action => 'index'
+    end
+
   end
 
   # GET - EDIT ARTICLE
