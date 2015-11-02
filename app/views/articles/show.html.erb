@@ -1,12 +1,17 @@
-<h2>Showing selected article</h2>
+<h1 class="section-title"><%= @article.title %></h1>
 
-<p>
-  Title: <%= @article.title %>
-</p>
+<div class="well">
 
-<p>
-  Description: <%= @article.description %>
-</p>
+  <h4 class="center"><strong>Article Contents:</strong></h4>
+  <hr/>
+  <div class="article-contents">
+    <%= @article.description %>
+  </div>
 
-<% link_to 'Edit', edit_article_path %>
-<% link_to 'Back', articles_path %>
+  <div class="article-actions">
+    <%= link_to 'Edit', edit_article_path, class: "btn btn-danger" %>
+    <%= link_to 'Delete', article_path(@article), method: :delete, data:{confirm: 'Really delete this article?'}, class: 'btn btn-danger' %>
+    <%= link_to 'View all articles', articles_path, class: "btn btn-default" %>
+  </div>
+</div>
+
