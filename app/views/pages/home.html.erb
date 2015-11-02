@@ -1,5 +1,11 @@
-<h1>Home Page</h1>
+<div class="text-center">
 
-<% link_to 'To articles list', articles_path %>
-<br/>
-<% link_to 'About', articles_path %>
+  <div class="jumbotron">
+    <h1>Rails Blog</h1>
+    <p>Welcome to the Rails Blog - A sample blog made using Ruby On Rails.</p>
+    <%= link_to 'Join here!', "#", class: "btn btn-danger btn-lg" %>
+
+    <%= image_tag("rails_icon.png", :alt => "RailsBlog Image", id: "hero-image") %>
+  </div>
+</div>
+

@@ -1,2 +1,54 @@
+$navbar-inverse-bg: #932A2A;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar-inverse{
+  border-radius: 0;
+}
+
+/* LOGO */
+#logo{
+  float: left;
+  font-size: 1.7em;
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+
+  :hover{
+    color: #FFF;
+    text-decoration: none;
+  }
+
+}
+
+#hero-image{
+  display: block;
+  margin: 30px auto;
+  height: 300px;
+}
+
+/* FOOTER */
+.footer{
+  margin-top: 45px;
+  padding: 5px;
+  border-top: 1px solid #EAEAEA;
+  color: #777;
+
+  small{
+    float: left;
+  }
+  a:hover{
+    color: #222;
+  }
+  ul{
+    float: right;
+    list-style: none;
+
+    li{
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
