@@ -2,6 +2,10 @@
 
 <div class="well">
 
+  <% unless @article.user.nil? %>
+    <% render 'users/user_header', user: @article.user %>
+  <% end %>
+
   <h4 class="center"><strong>Article Contents:</strong></h4>
   <hr/>
   <div class="article-contents">
