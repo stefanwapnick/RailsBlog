@@ -1,5 +1,8 @@
 <h1 class="section-title">All articles</h1>
 
+<p>
+    <%= link_to 'Create New', new_article_path, class: "btn btn-danger" %>
+</p>
 
 <% @articles.each do |article| %>
 
