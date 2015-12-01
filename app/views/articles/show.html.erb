@@ -13,9 +13,11 @@
   </div>
 
   <div class="article-actions">
-    <%= link_to 'Edit', edit_article_path, class: "btn btn-danger" %>
-    <%= link_to 'Delete', article_path(@article), method: :delete, data:{confirm: 'Really delete this article?'}, class: 'btn btn-danger' %>
-    <%= link_to 'View all articles', articles_path, class: "btn btn-default" %>
+    <% if logged_in? && current_user.id == @article.user.id %>
+        <%= link_to 'Edit', edit_article_path, class: 'btn btn-danger' %>
+        <%= link_to 'Delete', article_path(@article), method: :delete, data:{confirm: 'Really delete this article?'}, class: 'btn btn-danger' %>
+    <% end %>
+    <%= link_to 'View all articles', articles_path, class: 'btn btn-default' %>
   </div>
 </div>
 
