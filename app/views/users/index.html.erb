@@ -1,5 +1,9 @@
 <h1 class="section-title">All Blog Posters</h1>
 
+<%= will_paginate %>
+
 <% @users.each do |user| %>
     <% render 'user_header', user: user %>
 <% end %>
+
+<%= will_paginate %>

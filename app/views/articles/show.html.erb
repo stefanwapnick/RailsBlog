@@ -1,15 +1,15 @@
 <h1 class="section-title"><%= @article.title %></h1>
 
-<div class="well">
+<div class="well col-xs-8 col-xs-offset-2">
 
-  <% unless @article.user.nil? %>
+  <% if @article.user %>
     <% render 'users/user_header', user: @article.user %>
   <% end %>
 
   <h4 class="center"><strong>Article Contents:</strong></h4>
   <hr/>
   <div class="article-contents">
-    <%= @article.description %>
+    <%= simple_format(@article.description) %>
   </div>
 
   <div class="article-actions">

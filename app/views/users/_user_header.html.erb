@@ -1,13 +1,17 @@
-<ul class="listing">
+
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4 text-center">
-      <%= link_to gravatar_for(user), user_path(user) %> </li>
-      <li class="article-title">
-        <%= link_to user.username, user_path(user) %> </li>
-      </li>
-      <li><small>
-        <%= pluralize(user.articles.count, 'article') if user.articles %>
-      </small> </li>
+      <%= link_to gravatar_for(@user), user_path(@user) %>
+
+          <ul class="listing">
+          <li class="article-title">
+            <%= link_to @user.username, user_path(@user) %>
+          </li>
+          <li><small>
+            <%= pluralize(@user.articles.count, 'article') if user.articles %>
+          </small>
+          </li>
+          </ul>
+
     </div>
   </div>
-</ul>
