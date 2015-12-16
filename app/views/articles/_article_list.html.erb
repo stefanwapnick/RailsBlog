@@ -20,7 +20,7 @@
           </div>
 
           <div class="article-actions">
-            <% if logged_in? && current_user.id == article.user.id %>
+            <% if logged_in? && (current_user.id == article.user.id || current_user.admin?)%>
                 <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-danger' %>
                 <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Really delete article #{article.title}"}, class: 'btn btn-danger' %>
             <% end %>

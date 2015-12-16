@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update, :show, :update, :edit]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :set_user, only: [:update, :show, :update, :edit, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
@@ -36,6 +36,12 @@ class UsersController < ApplicationController
 
   end
 
+  def destroy
+    @user.destroy
+    flash[:danger] = 'User and all articles created by user have been deleted'
+
+  end
+
   def show
     @user_articles = @user.articles.paginate(page: params[:page], per_page: 5)
   end
@@ -49,7 +55,7 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
   def require_same_user
-    if !logged_in? || current_user.id != @user.id
+    if !logged_in? || (current_user.id != @user.id && !current_user.admin?)
       flash[:danger] = 'Cannot access user page'
       redirect_to root_path
     end

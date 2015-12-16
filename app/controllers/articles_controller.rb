@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article , only: [:show, :destroy, :edit, :update]
   before_action :required_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_admin, only: [:destroy]
 
   # GET - LIST ARTICLES
   ####################################################################
@@ -78,8 +79,15 @@ class ArticlesController < ApplicationController
     end
 
     def require_same_user
-      if current_user.id == @article.user.id
+      if current_user.id == @article.user.id && !current_user.admin?
         flash[:danger] = 'Can only modify own articles'
+        redirect_to root_path
+      end
+    end
+
+    def require_admin
+      if !current_user.admin?
+        flash[:danger] = 'That action requires admin privileges'
         redirect_to root_path
       end
     end
