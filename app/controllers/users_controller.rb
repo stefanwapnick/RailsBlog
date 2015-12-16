@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-
-  before_action :set_user, only[:update, :show, :update, :edit]
+  before_action :set_user, only: [:update, :show, :update, :edit]
+  before_action :require_same_user, only: [:edit, :update]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
@@ -14,8 +14,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = "You have successfully registered #{@user.username}"
-      redirect_to article_path
+      flash[:success] = "You have successfully registered as #{@user.username}"
+      session[:user_id] = @user.id
+      redirect_to user_path(@user.id)
     else
       render action: 'new'
     end
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = "Information updated."
+      flash[:success] = 'Information updated.'
       redirect_to article_path
     else
       render action: 'edit'
@@ -46,6 +47,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find params[:id]
+  end
+  def require_same_user
+    if !logged_in? || current_user.id != @user.id
+      flash[:danger] = 'Cannot access user page'
+      redirect_to root_path
+    end
   end
 
 end

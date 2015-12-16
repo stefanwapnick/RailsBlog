@@ -1,11 +1,10 @@
-<%= render 'article_list', articles: @articles %>
 <h1 class="section-title">All articles</h1>
 
 <!-- Pagination display -->
 <%= will_paginate %>
 
     <!-- Articles list -->
-    <p><%= link_to 'Create New', new_article_path, class: "btn btn-danger" %></p>
-
+    <%= render 'article_list', articles: @articles %>
+    <p><%= link_to 'Create New', new_article_path, class: 'btn btn-danger' %></p>
 <!-- Pagination display -->
 <%= will_paginate %>
