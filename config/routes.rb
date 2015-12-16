@@ -22,4 +22,9 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#login'
   post 'login', to: 'sessions#new'
   delete 'login', to: 'sessions#logout'
+
+  # CATEGORIES
+  ############################################
+  resources :categories, except: [:destroy]
+
 end
