@@ -14,7 +14,7 @@
             <%= truncate(article.description, length: 100) %>
 
             <div class="article-contents-footer">
-              Created by <%= article.user.username unless article.user.nil? %>,  <% time_ago_in_words(article.created_at) %> ago
+              Created by <%= article.user.username unless article.user.nil? %> on <%= article.created_at %>, updated <%= time_ago_in_words(article.updated_at) %>
             </div>
 
           </div>
