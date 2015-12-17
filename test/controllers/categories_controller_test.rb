@@ -12,6 +12,8 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test 'should get new' do
+    @user = User.create(username: 'john', email: 'john@test.com', password: 'password', admin: true)
+    session[:user_id] = @user.id
     get :new
     assert_response :success
   end
