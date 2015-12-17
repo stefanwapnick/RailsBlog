@@ -1,5 +1,9 @@
 <h1 class="section-title">Articles For @category.name</h1>
+<br/>
 
+<% if logged_in? && current_user.admin? %>
+  <%= link_to 'Edit Name', edit_category_path(@category), class: 'btn btn-default' %>
+<% end %>
 
 <%= will_paginate  %>
 
