@@ -1,13 +1,12 @@
-<h1 class="section-title">Articles For @category.name</h1>
+<h1 class="section-title">Articles For <%= @category.name %></h1>
 <br/>
 
 <% if logged_in? && current_user.admin? %>
   <%= link_to 'Edit Name', edit_category_path(@category), class: 'btn btn-default' %>
 <% end %>
+<%= link_to 'Create New', new_article_path, class: 'btn btn-danger' %>
+<br/><br/>
 
-<%= will_paginate  %>
-
+<%= will_paginate @category_articles %>
   <%= render 'articles/article_list', articles: @category_articles %>
-  <p><%= link_to 'Create New', new_article_path, class: 'btn btn-danger' %></p>
-
-<%= will_paginate %>
+<%= will_paginate @category_articles %>
