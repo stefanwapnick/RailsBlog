@@ -19,6 +19,10 @@
 
           </div>
 
+          <% if article.categories.any? %>
+              <p>Categories: <%= render 'categories/category', category: article.categories %></p>
+          <% end %>
+
           <div class="article-actions">
             <% if logged_in? && (current_user.id == article.user.id || current_user.admin?)%>
                 <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-danger' %>

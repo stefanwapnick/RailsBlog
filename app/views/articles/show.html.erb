@@ -12,6 +12,10 @@
     <%= simple_format(@article.description) %>
   </div>
 
+  <% if @article.categories.any? %>
+    <p>Categories: <%= render @article.categories %></p>
+  <% end %>
+
   <div class="article-actions">
     <% if logged_in? && (current_user.id == @article.user.id || current_user.admin?) %>
         <%= link_to 'Edit', edit_article_path, class: 'btn btn-danger' %>

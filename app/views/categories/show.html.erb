@@ -1,0 +1,9 @@
+<h1 class="section-title">Articles For @category.name</h1>
+
+
+<%= will_paginate  %>
+
+  <%= render 'articles/article_list', articles: @category_articles %>
+  <p><%= link_to 'Create New', new_article_path, class: 'btn btn-danger' %></p>
+
+<%= will_paginate %>
